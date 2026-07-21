@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Khadijat, from Awwal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* A brand new, vibrant, ultra-colorful romantic palette */
+      --deep-space: #0b091a;
+      --neon-pink: #ff4a85;
+      --bright-violet: #8a2be2;
+      --electric-coral: #ff6b4a;
+      --magic-yellow: #ffd54f;
+      --mint: #3df2be;
+      --cream: #ffffff;
+      --text-muted: #b5b3d6;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background: var(--deep-space);
+      color: var(--cream);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+    
+    h1, h2, h3 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+    }
+
+    /* Cosmic Canvas Background */
+    #stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 100px 24px;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      position: relative;
+    }
+    
+    .eyebrow {
+      font-family: 'Outfit', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-size: 0.8rem;
+      color: var(--neon-pink);
+      margin-bottom: 24px;
+      font-weight: 800;
+      text-shadow: 0 0 10px rgba(255, 74, 133, 0.4);
+    }
+    
+    .hero h1 {
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      line-height: 1.1;
+      max-width: 950px;
+      background: linear-gradient(135deg, var(--neon-pink), var(--electric-coral), var(--magic-yellow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 400;
+    }
+    
+    .hero p.sub {
+      margin-top: 30px;
+      max-width: 560px;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    /* THE SAME SKY ARC */
+    .same-sky {
+      margin-top: 60px;
+      width: 100%;
+      max-width: 600px;
+    }
+    
+    .sky-line {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+    
+    .sky-point {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      z-index: 2;
+    }
+    
+    .sky-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--neon-pink);
+      box-shadow: 0 0 15px var(--neon-pink), 0 0 30px var(--neon-pink);
+    }
+    
+    .sky-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--magic-yellow);
+    }
+    
+    .sky-arc {
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 80px);
+      height: 40px;
+    }
+    
+    .sky-caption {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    .sky-caption strong {
+      color: var(--mint);
+    }
+
+    /* SLEEK ROUNDED BORDERLESS CAPSULES */
+    .photo-capsule {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 4/5; /* Modern, clean aspect ratio */
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 2px solid transparent;
+      background: linear-gradient(135deg, var(--neon-pink), var(--bright-violet)) border-box;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    /* Diverse gradients for border animations */
+    .photo-capsule.color-2 {
+      background: linear-gradient(135deg, var(--electric-coral), var(--magic-yellow)) border-box;
+    }
+    .photo-capsule.color-3 {
+      background: linear-gradient(135deg, var(--mint), var(--bright-violet)) border-box;
+    }
+    .photo-capsule.color-4 {
+      background: linear-gradient(135deg, var(--neon-pink), var(--magic-yellow)) border-box;
+    }
+    .photo-capsule.color-5 {
+      background: linear-gradient(135deg, var(--bright-violet), var(--electric-coral)) border-box;
+    }
+    .photo-capsule.color-6 {
+      background: linear-gradient(135deg, var(--mint), var(--neon-pink)) border-box;
+    }
+
+    .photo-capsule:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(255, 74, 133, 0.25);
+    }
+
+    .photo-capsule .img-container {
+      width: 100%;
+      height: 100%;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-capsule img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Soft overlay with descriptive typography */
+    .photo-capsule .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 30px 20px 20px 20px;
+      background: linear-gradient(to top, rgba(11, 9, 26, 0.95) 20%, rgba(11, 9, 26, 0.5) 60%, transparent);
+      text-align: center;
+    }
+
+    .photo-capsule .overlay h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+
+    .photo-capsule .overlay p {
+      font-size: 0.85rem;
+      color: var(--mint);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .photo-capsule .placeholder-mark {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-muted);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+    }
+
+    .photo-capsule img.broken {
+      display: none;
+    }
+
+    .photo-capsule img.broken + .placeholder-mark {
+      display: flex;
+    }
+
+    /* GRID PATTERNS FOR MIXING CONTENT AND SEPARATED IMAGES */
+    .aesthetic-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .aesthetic-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+    }
+
+    .letter-wrap {
+      background: linear-gradient(135deg, rgba(138, 43, 226, 0.15), rgba(255, 74, 133, 0.05));
+      border: 1px solid rgba(255, 74, 133, 0.2);
+      border-radius: 24px;
+      padding: 48px clamp(20px, 5vw, 48px);
+      position: relative;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    }
+
+    .letter-body p {
+      font-size: 1.12rem;
+      margin-bottom: 24px;
+      color: #e2e1f5;
+    }
+
+    .letter-body p:first-of-type::first-letter {
+      font-family: 'Outfit', sans-serif;
+      font-size: 4rem;
+      font-weight: 800;
+      color: var(--neon-pink);
+      float: left;
+      line-height: 0.85;
+      margin: 8px 12px 0 0;
+      text-shadow: 0 0 15px rgba(255, 74, 133, 0.5);
+    }
+
+    .signoff {
+      margin-top: 30px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      color: var(--magic-yellow);
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* STORY TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+      border-left: 2px solid var(--bright-violet);
+    }
+    
+    .tl-item {
+      position: relative;
+      padding-bottom: 60px;
+    }
+    
+    .tl-item:last-child {
+      padding-bottom: 0;
+    }
+    
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -49px;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 10px var(--mint), 0 0 20px var(--mint);
+    }
+    
+    .tl-date {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--neon-pink);
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+    
+    .tl-item h3 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: var(--magic-yellow);
+    }
+
+    /* THE COUNTER (NOW REPLACED WITH STATIC MILESTONE TEXT) */
+    .counter-wrapper {
+      background: linear-gradient(135deg, #130f30, #080614);
+      border-radius: 28px;
+      padding: 60px 24px;
+      border: 2px solid rgba(138, 43, 226, 0.3);
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+    
+    .counter-number {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      background: linear-gradient(135deg, var(--mint), var(--bright-violet), var(--neon-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.1;
+      font-weight: 800;
+      filter: drop-shadow(0 0 30px rgba(61, 242, 190, 0.3));
+    }
+    
+    .counter-label {
+      margin-top: 20px;
+      color: var(--cream);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    /* INTERACTIVE LIKE COMPONENT */
+    .like-container {
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .like-btn {
+      background: linear-gradient(135deg, var(--neon-pink), var(--electric-coral));
+      border: none;
+      color: var(--cream);
+      border-radius: 50%;
+      width: 88px;
+      height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 2.2rem;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      outline: none;
+      box-shadow: 0 15px 30px rgba(255, 74, 133, 0.4);
+    }
+    
+    .like-btn:hover {
+      transform: scale(1.15) rotate(10deg);
+      box-shadow: 0 20px 40px rgba(255, 74, 133, 0.6);
+    }
+    
+    .like-btn:active {
+      transform: scale(0.9);
+    }
+    
+    .like-count {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4rem;
+      color: var(--mint);
+      font-weight: 800;
+      text-shadow: 0 0 10px rgba(61, 242, 190, 0.3);
+    }
+
+    footer {
+      text-align: center;
+      padding: 50px 24px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Scroll animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 1s cubic-bezier(0.2, 0.7, 0.2, 1), transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="stars"></canvas>
+  
+  <div class="content">
+    
+    <section class="hero">
+      <div class="eyebrow">Happy National Girlfriend Day &nbsp;&middot;&nbsp; August 1st</div>
+      <h1>To Khadijat, <em>my favorite star.</em></h1>
+      <p class="sub">No matter how many miles sit between us, we've never once looked up at a different sky. I built this quiet, glowing corner of the internet just for you.</p>
+      
+      <div class="same-sky">
+        <div class="sky-line">
+          <div class="sky-point">
+            <div class="sky-dot"></div>
+            <div class="sky-name">Awwal</div>
+          </div>
+          <svg class="sky-arc" viewBox="0 0 400 40" preserveAspectRatio="none">
+            <path d="M 10 34 Q 200 -14 390 34" fill="none" stroke="#ff4a85" stroke-width="2.5" stroke-dasharray="6 8" opacity="0.9"/>
+          </svg>
+          <div class="sky-point">
+            <div class="sky-dot"></div>
+            <div class="sky-name">Khadijat</div>
+          </div>
+        </div>
+        <p class="sky-caption">Sharing <strong>1 month and more</strong> of a beautiful story, told from two places.</p>
+      </div>
+    </section>
+
+    <section class="reveal" style="text-align: center; padding-bottom: 50px;">
+      <div class="eyebrow">The beginning of us</div>
+      <h2 style="font-size: clamp(2.2rem, 5vw, 3.2rem); margin-bottom: 24px; background: linear-gradient(135deg, var(--mint), var(--bright-violet)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Where it all starts.</h2>
+      
+      <div class="photo-capsule">
+        <div class="img-container">
+          <img src="image/WhatsApp Image 2026-06-21 at 1.16.25 PM.jpeg" alt="Khadijat 1" onerror="this.classList.add('broken')">
+          <div class="placeholder-mark">✦<br>Photo 1<br>(Insert photo1.jpg here)</div>
+        </div>
+        <div class="overlay">
+          <h4>Your smile, mostly</h4>
+          <p>My favorite view</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="aesthetic-grid">
+        <div class="letter-wrap">
+          <div class="letter-body">
+            <p>Khadijat, there's a version of this that would have been easier to just text you. But some things deserve more than a simple chat bubble, so I built you this corner instead.</p>
+            <p>Loving someone from a distance means loving them on purpose, every single day, with nothing but a screen and your voice to go on. I've never met you in person, and somehow you still feel like the most familiar thing in my life. That's rare.</p>
+            <p>I think about the ordinary parts most — the good morning texts, the way you tell a story, the silence when one of us falls asleep mid-call. None of it is dramatic. All of it is home.</p>
+          </div>
+          <p class="signoff">— Awwal</p>
+        </div>
+
+        <div style="text-align: center;">
+          <div class="photo-capsule color-2" style="margin-bottom: 30px;">
+            <div class="img-container">
+              <img src="image/WhatsApp Image 2026-06-18 at 9.17.25 PM.jpeg" alt="Khadijat 2" onerror="this.classList.add('broken')">
+              <div class="placeholder-mark">✦<br>Photo 2<br>(Insert photo2.jpg here)</div>
+            </div>
+            <div class="overlay">
+              <h4>Warms my heart</h4>
+              <p>Thinking of you</p>
+            </div>
+          </div>
+          <h3 style="color: var(--magic-yellow); font-size: 1.8rem; margin-bottom: 10px;">Completely Yours</h3>
+          <p style="color: var(--text-muted);">No matter the distance, this screen holds a beautiful space where we are always close.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" style="text-align: center; padding: 50px 24px;">
+      <div class="photo-capsule color-3" style="margin-bottom: 24px;">
+        <div class="img-container">
+          <img src="image/hy.jpeg" alt="Khadijat 3" onerror="this.classList.add('broken')">
+          <div class="placeholder-mark">✦<br>Photo 3<br>(Insert photo3.jpg here)</div>
+        </div>
+        <div class="overlay">
+          <h4>Every single day</h4>
+          <p>My constant inspiration</p>
+        </div>
+      </div>
+      <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 500px; margin: 0 auto;">A little moment captured in time, saved right here where it belongs.</p>
+    </section>
+
+    <section class="reveal">
+      <div class="aesthetic-grid" style="direction: rcl;">
+        <div style="direction: ltr;">
+          <div class="eyebrow">Our Journey</div>
+          <h2 style="font-size: 2.5rem; margin-bottom: 30px; color: var(--mint);">How we got here</h2>
+          
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">Where it started</div>
+              <h3>The first conversation</h3>
+              <p style="color: var(--text-muted);">An unexpected text message that eventually blossomed into our daily anchor.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-date">Somewhere along the way</div>
+              <h3>When it became clear</h3>
+              <p style="color: var(--text-muted);">The quiet, sudden moment we realized this was becoming something real, even from a distance.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-date">Happy Girlfriend Day</div>
+              <h3>Still choosing you</h3>
+              <p style="color: var(--text-muted);">Every single morning and night. I wouldn't trade this choice for anything.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="direction: ltr; text-align: center;">
+          <div class="photo-capsule color-4">
+            <div class="img-container">
+              <img src="image/WhatsApp Image 2026-06-19 at 9.41.51 PM.jpeg" alt="Khadijat 4" onerror="this.classList.add('broken')">
+              <div class="placeholder-mark">✦<br>Photo 4<br>(Insert photo4.jpg here)</div>
+            </div>
+            <div class="overlay">
+              <h4>My favorite notification</h4>
+              <p>Late night vibes</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" style="text-align: center; padding: 50px 24px;">
+      <div class="photo-capsule color-5" style="margin-bottom: 24px;">
+        <div class="img-container">
+          <img src="image/WhatsApp Image 2026-06-20 at 12.33.17 PM.jpeg" alt="Khadijat 5" onerror="this.classList.add('broken')">
+          <div class="placeholder-mark">✦<br>Photo 5<br>(Insert photo5.jpg here)</div>
+        </div>
+        <div class="overlay">
+          <h4>A beautiful dream</h4>
+          <p>Soon to be real</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="aesthetic-grid">
+        <div class="counter-wrapper">
+          <div class="eyebrow" style="color: var(--mint);">Our Milestone</div>
+          <div class="counter-number">1 Month &amp; More</div>
+          <div class="counter-label">Of laughing, loving, and looking at the same stars</div>
+        </div>
+
+        <div style="text-align: center;">
+          <div class="photo-capsule color-6">
+            <div class="img-container">
+              <img src="./image/WhatsApp Image 2026-06-18 at 10.34.36 PM.jpeg" alt="Khadijat 6" onerror="this.classList.add('broken')">
+              <div class="placeholder-mark">✦<br>Photo 6<br>(Insert photo6.jpg here)</div>
+            </div>
+            <div class="overlay">
+              <h4>Our future</h4>
+              <p>To closing the gap</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" style="text-align: center;">
+      <h2 style="font-size: clamp(2.2rem, 6vw, 3.5rem); margin-bottom: 20px; background: linear-gradient(135deg, var(--neon-pink), var(--magic-yellow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">To Khadijat, from Awwal.</h2>
+      <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto 30px auto;">Press the heart below to send love through the screen.</p>
+      
+      <div class="like-container">
+        <button class="like-btn" id="likeBtn" aria-label="Send love">♥</button>
+        <span class="like-count" id="likeCount">0 hearts sent</span>
+      </div>
+    </section>
+
+    <footer>made with care — by Awwal, for Khadijat</footer>
+  </div>
+
+  <script>
+    // Reveal elements on scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window){
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('in-view');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      revealEls.forEach(el => io.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add('in-view'));
+    }
+
+    // Stars Background (Multi-colored)
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resize(){
+      canvas.width = window.innerWidth;
+      canvas.height = document.body.scrollHeight;
+    }
+
+    function makeStars(){
+      const count = Math.floor((canvas.width * canvas.height) / 8000);
+      const colors = ['#ff4a85', '#8a2be2', '#ff6b4a', '#ffd54f', '#3df2be'];
+      stars = Array.from({length: count}, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 0.5,
+        phase: Math.random() * Math.PI * 2,
+        speed: Math.random() * 0.01 + 0.004,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      }));
+    }
+
+    function draw(t){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for(const s of stars){
+        const twinkle = 0.3 + 0.7 * Math.sin(t * s.speed + s.phase);
+        ctx.globalAlpha = 0.1 + twinkle * 0.8;
+        ctx.fillStyle = s.color;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', () => { resize(); makeStars(); });
+    window.addEventListener('load', () => { resize(); makeStars(); requestAnimationFrame(draw); });
+
+    // Interactive Like Button with burst particles
+    let likes = parseInt(localStorage.getItem('khad_likes_v3') || '0');
+    const likeBtn = document.getElementById('likeBtn');
+    const likeCountEl = document.getElementById('likeCount');
+    likeCountEl.textContent = `${likes} heart${likes === 1 ? '' : 's'} sent`;
+
+    likeBtn.addEventListener('click', (e) => {
+      likes++;
+      localStorage.setItem('khad_likes_v3', likes);
+      likeCountEl.textContent = `${likes} heart${likes === 1 ? '' : 's'} sent`;
+
+      const rect = likeBtn.getBoundingClientRect();
+      const btnX = rect.left + rect.width / 2;
+      const btnY = rect.top + rect.height / 2;
+
+      const particleColors = ['#ff4a85', '#8a2be2', '#ff6b4a', '#ffd54f', '#3df2be'];
+
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.innerHTML = '♥';
+        heart.style.position = 'fixed';
+        heart.style.left = btnX + 'px';
+        heart.style.top = btnY + 'px';
+        heart.style.color = particleColors[Math.floor(Math.random() * particleColors.length)];
+        heart.style.fontSize = Math.random() * 20 + 14 + 'px';
+        heart.style.pointerEvents = 'none';
+        heart.style.zIndex = '999';
+        document.body.appendChild(heart);
+
+        const angle = (Math.random() * 360) * Math.PI / 180;
+        const velocity = Math.random() * 150 + 80;
+        const dx = Math.cos(angle) * velocity;
+        const dy = Math.sin(angle) * velocity;
+
+        heart.animate([
+          { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+          { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(0)`, opacity: 0 }
+        ], {
+          duration: 900 + Math.random() * 400,
+          easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+        }).onfinish = () => heart.remove();
+      }
+    });
+  </script>
+</body>
+</html>
