@@ -354,7 +354,7 @@
       color: var(--magic-yellow);
     }
 
-    /* THE COUNTER (NOW REPLACED WITH STATIC MILESTONE TEXT) */
+    /* THE COUNTER */
     .counter-wrapper {
       background: linear-gradient(135deg, #130f30, #080614);
       border-radius: 28px;
@@ -427,13 +427,130 @@
       text-shadow: 0 0 10px rgba(61, 242, 190, 0.3);
     }
 
+    /* PASSCODE LOCK SECTION */
+    .passcode-section {
+      text-align: center;
+      padding: 80px 24px;
+      background: linear-gradient(180deg, transparent, rgba(138, 43, 226, 0.08), transparent);
+    }
+
+    .passcode-box {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .passcode-input-container {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .passcode-input {
+      width: 240px;
+      height: 54px;
+      background: rgba(11, 9, 26, 0.8);
+      border: 2px solid var(--neon-pink);
+      border-radius: 16px;
+      color: var(--cream);
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      text-align: center;
+      outline: none;
+      box-shadow: 0 0 15px rgba(255, 74, 133, 0.2);
+      transition: all 0.3s ease;
+      letter-spacing: 0.2em;
+    }
+
+    .passcode-input:focus {
+      border-color: var(--mint);
+      box-shadow: 0 0 25px rgba(61, 242, 190, 0.4);
+    }
+
+    .passcode-btn {
+      padding: 0 32px;
+      height: 54px;
+      background: linear-gradient(135deg, var(--neon-pink), var(--bright-violet));
+      border: none;
+      border-radius: 16px;
+      color: var(--cream);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(255, 74, 133, 0.3);
+    }
+
+    .passcode-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 25px rgba(255, 74, 133, 0.5);
+    }
+
+    .passcode-error {
+      color: var(--electric-coral);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      min-height: 24px;
+      transition: opacity 0.3s;
+    }
+
+    /* SECRET UNLOCKED ALBUM SECTION */
+    #secretAlbum {
+      display: none;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+
+    #secretAlbum.unlocked {
+      display: block;
+      opacity: 1;
+    }
+
+    .album-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin-bottom: 80px;
+    }
+
+    .emotional-note {
+      background: linear-gradient(135deg, rgba(255, 74, 133, 0.1), rgba(61, 242, 190, 0.05));
+      border: 1px solid rgba(255, 213, 79, 0.3);
+      border-radius: 28px;
+      padding: 50px 30px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 60px auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .emotional-note p {
+      font-size: 1.2rem;
+      color: #eae9f8;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+
     footer {
       text-align: center;
       padding: 50px 24px;
       color: var(--text-muted);
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: 'Outfit', sans-serif;
     }
 
     /* Scroll animations */
@@ -499,7 +616,7 @@
           <div class="letter-body">
             <p>Khadijat, there's a version of this that would have been easier to just text you. But some things deserve more than a simple chat bubble, so I built you this corner instead.</p>
             <p>Loving someone from a distance means loving them on purpose, every single day, with nothing but a screen and your voice to go on. I've never met you in person, and somehow you still feel like the most familiar thing in my life. That's rare.</p>
-            <p>I think about the ordinary parts most — the good morning texts, the way you tell a story, the silence when one of us falls asleep mid-call. None of it is dramatic. All of it is home.</p>
+            <p>I think about the ordinary parts most — the good morning texts, and you just makes me smile when am chatting with you even when the world feels heavy.</p>
           </div>
           <p class="signoff">— Awwal</p>
         </div>
@@ -536,7 +653,7 @@
     </section>
 
     <section class="reveal">
-      <div class="aesthetic-grid" style="direction: rcl;">
+      <div class="aesthetic-grid" style="direction: rtl;">
         <div style="direction: ltr;">
           <div class="eyebrow">Our Journey</div>
           <h2 style="font-size: 2.5rem; margin-bottom: 30px; color: var(--mint);">How we got here</h2>
@@ -623,10 +740,252 @@
       </div>
     </section>
 
-    <footer>made with care — by Awwal, for Khadijat</footer>
+    <section class="passcode-section reveal" id="passcodeSection">
+      <p style="font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 20px; background: linear-gradient(135deg, var(--neon-pink), var(--magic-yellow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; font-weight: 800; font-family: 'Outfit', sans-serif;">
+        To see the rest of the page enter the passcode
+      </p>
+
+      <div class="passcode-box">
+        <div class="passcode-input-container">
+          <input type="password" id="passcodeInput" class="passcode-input" placeholder="Enter passcode" maxlength="10">
+          <button class="passcode-btn" onclick="check()">Confirm</button>
+        </div>
+        <div class="passcode-error" id="passcodeError"></div>
+      </div>
+    </section>
+
+    <section id="secretAlbum">
+      <div class="album-header">
+        <div class="eyebrow" style="color: var(--mint);">Unlocked Just For You</div>
+        <h2 style="font-size: clamp(2.5rem, 6vw, 4rem); background: linear-gradient(135deg, var(--neon-pink), var(--electric-coral), var(--magic-yellow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          My Favorite Memories Of You
+        </h2>
+        <p style="color: var(--text-muted); margin-top: 12px; font-size: 1.1rem;">
+          Every picture holds a reason why my heart belongs to you, Khadijat.
+        </p>
+      </div>
+
+      <div class="album-grid">
+        
+        <div class="photo-capsule color-1">
+          <div class="img-container">
+            <img src="image/WhatsApp Image 2026-06-21 at 1.16.25 PM.jpeg" alt="Khadijat 1" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 1</div>
+          </div>
+          <div class="overlay">
+            <h4>Pure Grace</h4>
+            <p>You light up my world</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-2">
+          <div class="img-container">
+            <img src="image/WhatsApp Image 2026-06-18 at 9.17.25 PM.jpeg" alt="Khadijat 2" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 2</div>
+          </div>
+          <div class="overlay">
+            <h4>My Daily Joy</h4>
+            <p>Unmatched beauty</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-3">
+          <div class="img-container">
+            <img src="image/hy.jpeg" alt="Khadijat 3" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 3</div>
+          </div>
+          <div class="overlay">
+            <h4>Soft & Serene</h4>
+            <p>My calm in the storm</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-4">
+          <div class="img-container">
+            <img src="image/WhatsApp Image 2026-06-19 at 9.41.51 PM.jpeg" alt="Khadijat 4" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 4</div>
+          </div>
+          <div class="overlay">
+            <h4>That Precious Smile</h4>
+            <p>I fall for you more each day</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-5">
+          <div class="img-container">
+            <img src="image/WhatsApp Image 2026-06-20 at 12.33.17 PM.jpeg" alt="Khadijat 5" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 5</div>
+          </div>
+          <div class="overlay">
+            <h4>Forever & Always</h4>
+            <p>My heart's choice</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-6">
+          <div class="img-container">
+            <img src="./image/WhatsApp Image 2026-06-18 at 10.34.36 PM.jpeg" alt="Khadijat 6" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 6</div>
+          </div>
+          <div class="overlay">
+            <h4>To Our Future</h4>
+            <p>Where distance won't exist</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-1">
+          <div class="img-container">
+            <img src="WhatsApp Image 2026-06-18 at 10.31.38 PM.jpeg" alt="Khadijat 7" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 7</div>
+          </div>
+          <div class="overlay">
+            <h4>Radiant Glow</h4>
+            <p>Brighter than the stars</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-2">
+          <div class="img-container">
+            <img src="WhatsApp Image 2026-06-26 at 8.57.28 PM.jpeg" alt="Khadijat 8" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 8</div>
+          </div>
+          <div class="overlay">
+            <h4>My Favorite Thought</h4>
+            <p>Always on my mind</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-3">
+          <div class="img-container">
+            <img src="WhatsApp Image 2026-06-26 at 10.31.38 AM.jpeg" alt="Khadijat 9" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 9</div>
+          </div>
+          <div class="overlay">
+            <h4>Simply Perfect</h4>
+            <p>No words needed</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-4">
+          <div class="img-container">
+            <img src="WhatsApp Image 2026-07-03 at 4.27.38 PM.jpeg" alt="Khadijat 10" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 10</div>
+          </div>
+          <div class="overlay">
+            <h4>Heart & Soul</h4>
+            <p>My safe space</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-5">
+          <div class="img-container">
+            <img src="WhatsApp Image 2026-07-06 at 11.46.22 AM.jpeg" alt="Khadijat 11" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 11</div>
+          </div>
+          <div class="overlay">
+            <h4>Endless Charm</h4>
+            <p>You steal my breath</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-6">
+          <div class="img-container">
+            <img src="image/WhatsApp Image 2026-06-18 at 8.56.36 PM.jpeg" alt="Khadijat 12" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 12</div>
+          </div>
+          <div class="overlay">
+            <h4>Timeless Beauty</h4>
+            <p>One in a billion</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-1">
+          <div class="img-container">
+            <img src="WhatsApp Image 2026-07-25 at 10.19.04 PM.jpeg" alt="Khadijat 13" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 13</div>
+          </div>
+          <div class="overlay">
+            <h4>My Greatest Blessing</h4>
+            <p>Grateful every day</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-2">
+          <div class="img-container">
+            <img src="WhatsApp Image 2026-07-08 at 7.34.50 PM.jpeg" alt="Khadijat 14" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 14</div>
+          </div>
+          <div class="overlay">
+            <h4>Sweet Memories</h4>
+            <p>Written in my heart</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-3">
+          <div class="img-container">
+            <img src="WhatsApp Image 2026-06-23 at 12.12.09 AM.jpeg" alt="Khadijat 15" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 15</div>
+          </div>
+          <div class="overlay">
+            <h4>My Whole World</h4>
+            <p>Forever choosing you</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="emotional-note">
+        <h3 style="font-size: 2rem; color: var(--magic-yellow); margin-bottom: 20px;">Why I Love You, Khadijat</h3>
+        <p>
+          If I could give you one thing in life, I would give you the ability to see yourself through my eyes. Only then would you realize how truly special, beautiful, and irreplaceable you are to me.
+        </p>
+        <p>
+           The distance is only a test to see how far love can travel. You are my favorite thought, my safest place, and the girl I will continue choosing today, tomorrow, and every day after.
+        </p>
+        <p style="font-weight: 800; color: var(--neon-pink); font-size: 1.4rem; margin-top: 30px;">
+          Always yours, Awwal. ♥
+        </p>
+      </div>
+
+      <footer>Made with all my heart for you, my beloved Khadijat</footer>
+    </section>
+
   </div>
 
   <script>
+    // Passcode Verification System
+    function check() {
+      const input = document.getElementById('passcodeInput');
+      const error = document.getElementById('passcodeError');
+      const album = document.getElementById('secretAlbum');
+      const correctCode = "2009";
+
+      if (input.value.trim() === correctCode) {
+        error.style.color = "var(--mint)";
+        error.textContent = "Passcode accepted! Unlocking your surprise...";
+        
+        // Burst hearts on correct code entry
+        const rect = input.getBoundingClientRect();
+        createHeartBurst(rect.left + rect.width / 2, rect.top);
+
+        setTimeout(() => {
+          album.classList.add('unlocked');
+          album.scrollIntoView({ behavior: 'smooth' });
+        }, 600);
+      } else {
+        error.style.color = "var(--electric-coral)";
+        error.textContent = "Incorrect passcode. Try again, my love! ♥";
+        input.value = "";
+      }
+    }
+
+    // Allow entering passcode by pressing "Enter" key
+    document.getElementById('passcodeInput').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        check();
+      }
+    });
+
     // Reveal elements on scroll
     const revealEls = document.querySelectorAll('.reveal');
     if('IntersectionObserver' in window){
@@ -695,9 +1054,10 @@
       likeCountEl.textContent = `${likes} heart${likes === 1 ? '' : 's'} sent`;
 
       const rect = likeBtn.getBoundingClientRect();
-      const btnX = rect.left + rect.width / 2;
-      const btnY = rect.top + rect.height / 2;
+      createHeartBurst(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    });
 
+    function createHeartBurst(btnX, btnY) {
       const particleColors = ['#ff4a85', '#8a2be2', '#ff6b4a', '#ffd54f', '#3df2be'];
 
       for (let i = 0; i < 20; i++) {
@@ -725,7 +1085,7 @@
           easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
         }).onfinish = () => heart.remove();
       }
-    });
+    }
   </script>
 </body>
 </html>
