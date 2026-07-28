@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khadijat & Awwal — Cosmic Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090714;
+      --accent-pink: #ff3377;
+      --accent-purple: #7928ca;
+      --accent-gold: #ffbe0b;
+      --accent-cyan: #00f2fe;
+      --card-bg: rgba(255, 255, 255, 0.04);
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f0edf6;
+      --text-dim: #9d98b3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Floating Polaroids Design */
+    .polaroid {
+      background: #ffffff;
+      padding: 12px 12px 24px 12px;
+      border-radius: 8px;
+      color: #111;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      transform: rotate(-2deg);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    .polaroid:nth-child(even) {
+      transform: rotate(3deg);
+    }
+
+    .polaroid:hover {
+      transform: scale(1.05) rotate(0deg);
+      z-index: 10;
+    }
+
+    .polaroid img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .polaroid .caption {
+      font-family: 'Caveat', cursive;
+      font-size: 1.6rem;
+      text-align: center;
+      margin-top: 10px;
+      color: #222;
+    }
+
+    .polaroid img.broken {
+      display: none;
+    }
+
+    .polaroid .ph-text {
+      display: none;
+      aspect-ratio: 1/1;
+      background: #f0f0f0;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .polaroid img.broken + .ph-text {
+      display: flex;
+    }
+
+    /* Layout Containers */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    /* Hero Styling */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .title-gradient {
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple), var(--accent-gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    /* Interactive "Open When..." Cards */
+    .flip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .flip-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 30px 24px;
+      text-align: center;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .flip-card:hover {
+      border-color: var(--accent-pink);
+      transform: translateY(-50px);
+    }
+
+    .flip-card .card-secret {
+      display: none;
+      margin-top: 15px;
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    .flip-card.open .card-secret {
+      display: block;
+    }
+
+    /* Dynamic Love Reason Generator */
+    .generator-box {
+      background: linear-gradient(135deg, rgba(121, 40, 202, 0.2), rgba(255, 51, 119, 0.1));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .gen-btn {
+      padding: 14px 28px;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      border: none;
+      border-radius: 50px;
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 10px 20px rgba(255, 51, 119, 0.3);
+      transition: transform 0.2s;
+    }
+
+    .gen-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .gen-output {
+      font-family: 'Caveat', cursive;
+      font-size: 2rem;
+      color: var(--accent-gold);
+      margin-top: 20px;
+      min-height: 60px;
+    }
+
+    /* Dual Unlock System (Quiz + Passcode) */
+    .vault-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 50px 30px;
+      max-width: 650px;
+      margin: 0 auto;
+      text-align: center;
+      backdrop-filter: blur(12px);
+    }
+
+    .step-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(255, 190, 11, 0.15);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .custom-input {
+      width: 240px;
+      height: 50px;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: #fff;
+      text-align: center;
+      font-size: 1.1rem;
+      outline: none;
+    }
+
+    .custom-input:focus {
+      border-color: var(--accent-pink);
+    }
+
+    .action-btn {
+      height: 50px;
+      padding: 0 28px;
+      background: var(--accent-pink);
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    #stage2 {
+      display: none;
+    }
+
+    /* Secret Unlocked Gallery */
+    #secretVault {
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    #secretVault.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="canvas"></canvas>
+
+  <div class="container">
+
+    <section class="hero">
+      <div class="step-badge">National Girlfriend Day &bull; August 1st</div>
+      <h1 class="title-gradient">Khadijat &amp; Awwal</h1>
+      <p style="color: var(--text-dim); max-width: 550px; font-size: 1.15rem;">
+        Miles apart, yet tied together under the exact same sky. Here is a small dynamic universe created just for you.
+      </p>
+    </section>
+
+    <section>
+      <h2 style="text-align: center; font-size: 2.2rem; margin-bottom: 40px;">Moments Floating In Time</h2>
+      <div style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center;">
+        <div class="polaroid">
+          <img src="image/WhatsApp Image 2026-06-21 at 1.16.25 PM.jpeg" alt="Photo 1" onerror="this.classList.add('broken')">
+          <div class="ph-text">✦ Photo 1</div>
+          <div class="caption">My Favorite Smile</div>
+        </div>
+        <div class="polaroid">
+          <img src="image/WhatsApp Image 2026-06-18 at 9.17.25 PM.jpeg" alt="Photo 2" onerror="this.classList.add('broken')">
+          <div class="ph-text">✦ Photo 2</div>
+          <div class="caption">Pure Elegance</div>
+        </div>
+        <div class="polaroid">
+          <img src="image/hy.jpeg" alt="Photo 3" onerror="this.classList.add('broken')">
+          <div class="ph-text">✦ Photo 3</div>
+          <div class="caption">Soft & Warm</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="text-align: center; font-size: 2.2rem; margin-bottom: 10px;">Interactive Comfort Cards</h2>
+      <p style="text-align: center; color: var(--text-dim); margin-bottom: 30px;">Tap a card whenever you feel like reading a note from me.</p>
+
+      <div class="flip-grid">
+        <div class="flip-card" onclick="this.classList.toggle('open')">
+          <h3>💌 Open When You Miss Me</h3>
+          <div class="card-secret">"Look up at the moon. Remember that I am looking at it too, thinking only of you."</div>
+        </div>
+        <div class="flip-card" onclick="this.classList.toggle('open')">
+          <h3>🌸 Open When You Feel Stressed</h3>
+          <div class="card-secret">"Take a slow breath. You are doing amazing, and I am so proud of you every day."</div>
+        </div>
+        <div class="flip-card" onclick="this.classList.toggle('open')">
+          <h3>✨ Open When You Smile</h3>
+          <div class="card-secret">"Hold onto that smile. It’s my favorite thing in the entire world."</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="generator-box">
+        <h2>Why I Love You</h2>
+        <p style="color: var(--text-dim); margin: 10px 0 20px 0;">Click the button below to generate a reason why you mean so much to me.</p>
+        <button class="gen-btn" onclick="generateReason()">Tap for a Reason ♥</button>
+        <div class="gen-output" id="reasonText">"Click the button above..."</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="vault-box">
+        
+        <div id="stage1">
+          <div class="step-badge">Security Question 1/2</div>
+          <h2 style="margin-bottom: 10px;">Answer To Unlock Stage 2</h2>
+          <p style="color: var(--text-dim); font-size: 0.95rem;">What is Awwal's special name for you?</p>
+          <div class="input-row">
+            <input type="text" id="quizInput" class="custom-input" placeholder="Enter answer...">
+            <button class="action-btn" onclick="verifyQuiz()">Verify</button>
+          </div>
+          <div id="quizErr" style="margin-top: 15px; color: var(--accent-pink); font-weight: 600;"></div>
+        </div>
+
+        <div id="stage2">
+          <div class="step-badge" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">Security Lock 2/2</div>
+          <h2 style="margin-bottom: 10px;">Enter Passcode</h2>
+          <p style="color: var(--text-dim); font-size: 0.95rem;">Almost there! Enter your secret code.</p>
+          <div class="input-row">
+            <input type="password" id="passInput" class="custom-input" placeholder="Enter passcode" maxlength="10">
+            <button class="action-btn" style="background: var(--accent-purple);" onclick="verifyPass()">Unlock Vault</button>
+          </div>
+          <div id="passErr" style="margin-top: 15px; color: var(--accent-pink); font-weight: 600;"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="secretVault">
+      <h2 style="text-align: center; font-size: 2.8rem; background: linear-gradient(135deg, var(--accent-gold), var(--accent-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        The Secret Photo Vault
+      </h2>
+      <p style="text-align: center; color: var(--text-dim); margin-bottom: 40px;">Unlocked exclusively for Khadijat</p>
+
+      <div class="gallery-grid">
+        <div class="polaroid">
+          <img src="image/WhatsApp Image 2026-06-19 at 9.41.51 PM.jpeg" alt="Vault 1" onerror="this.classList.add('broken')">
+          <div class="ph-text">✦ Photo 4</div>
+          <div class="caption">Late Night Talks</div>
+        </div>
+        <div class="polaroid">
+          <img src="image/WhatsApp Image 2026-06-20 at 12.33.17 PM.jpeg" alt="Vault 2" onerror="this.classList.add('broken')">
+          <div class="ph-text">✦ Photo 5</div>
+          <div class="caption">Sweet Memories</div>
+        </div>
+        <div class="polaroid">
+          <img src="./image/WhatsApp Image 2026-06-18 at 10.34.36 PM.jpeg" alt="Vault 3" onerror="this.classList.add('broken')">
+          <div class="ph-text">✦ Photo 6</div>
+          <div class="caption">Our Bright Future</div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 60px; padding: 40px; background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border);">
+        <h3 style="font-size: 1.8rem; color: var(--accent-gold);">Forever &amp; Always</h3>
+        <p style="max-width: 600px; margin: 15px auto; color: var(--text-dim);">
+          No matter how far we are physically, you are always the closest person to my heart. Thank you for being you, Khadijat.
+        </p>
+        <div style="font-weight: 800; color: var(--accent-pink); font-size: 1.2rem;">— Awwal ♥</div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Love Reasons List
+    const reasons = [
+      "The genuine way you care about the small details.",
+      "How your messages instantly make my bad days better.",
+      "Your laugh—it's my favorite sound in the world.",
+      "The comfort and peace I feel whenever I talk to you.",
+      "Your beautiful soul and gentle nature.",
+      "How effortlessly you bring out the best version of me."
+    ];
+
+    function generateReason() {
+      const random = reasons[Math.floor(Math.random() * reasons.length)];
+      document.getElementById('reasonText').textContent = `"${random}"`;
+    }
+
+    // Dual Security System
+    function verifyQuiz() {
+      const ans = document.getElementById('quizInput').value.trim().toLowerCase();
+      const err = document.getElementById('quizErr');
+
+      if (ans.length > 0) {
+        err.style.color = "var(--accent-cyan)";
+        err.textContent = "Correct! Moving to stage 2...";
+        setTimeout(() => {
+          document.getElementById('stage1').style.display = 'none';
+          document.getElementById('stage2').style.display = 'block';
+        }, 600);
+      } else {
+        err.textContent = "Please enter an answer!";
+      }
+    }
+
+    function verifyPass() {
+      const code = document.getElementById('passInput').value.trim();
+      const err = document.getElementById('passErr');
+      const vault = document.getElementById('secretVault');
+
+      if (code === "2009") {
+        err.style.color = "var(--accent-gold)";
+        err.textContent = "Vault Unlocked!";
+        setTimeout(() => {
+          vault.classList.add('active');
+          vault.scrollIntoView({ behavior: 'smooth' });
+        }, 500);
+      } else {
+        err.textContent = "Incorrect passcode. Try again!";
+      }
+    }
+
+    // Star Canvas Background
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const stars = Array.from({ length: 90 }, () => ({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      r: Math.random() * 1.5,
+      a: Math.random()
+    }));
+
+    function renderStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${s.a})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(renderStars);
+    }
+    renderStars();
+  </script>
+</body>
+</html>

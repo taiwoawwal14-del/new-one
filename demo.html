@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eternal Moments — Premium Couple Website Demo</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #0a0508;
+      --card-bg: rgba(22, 12, 18, 0.75);
+      --accent-gold: #d4af37;
+      --gold-glow: rgba(212, 175, 55, 0.3);
+      --rose-pink: #e0a3b7;
+      --text-light: #f5f0f2;
+      --text-muted: #b8a6b0;
+      --border-gold: rgba(212, 175, 55, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.7;
+      background-image: 
+        radial-gradient(circle at 20% 20%, rgba(80, 20, 50, 0.4) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(60, 10, 40, 0.4) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    /* Floating Sparkles Canvas */
+    #sparkle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* BUSINESS DEMO BANNER */
+    .demo-bar {
+      background: linear-gradient(90deg, var(--accent-gold), #f3e5ab, var(--accent-gold));
+      color: #0a0508;
+      text-align: center;
+      padding: 8px 15px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    /* HEADER / HERO */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 24px;
+      border-radius: 30px;
+      border: 1px solid var(--border-gold);
+      background: rgba(212, 175, 55, 0.08);
+      color: var(--accent-gold);
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      background: linear-gradient(135deg, #ffffff 30%, var(--accent-gold) 80%, #fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+      text-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-style: italic;
+      color: var(--rose-pink);
+      margin-bottom: 20px;
+    }
+
+    .hero-p {
+      max-width: 650px;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      font-weight: 300;
+      margin-bottom: 40px;
+    }
+
+    /* COUNTDOWN TIMER SECTION */
+    .timer-container {
+      background: var(--card-bg);
+      border: 1px solid var(--border-gold);
+      border-radius: 20px;
+      padding: 30px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      margin-bottom: 60px;
+      width: 100%;
+      max-width: 750px;
+    }
+
+    .timer-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: var(--accent-gold);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      text-align: center;
+    }
+
+    .timer-box {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 15px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .timer-number {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .timer-label {
+      font-size: 0.75rem;
+      color: var(--rose-pink);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 5px;
+    }
+
+    /* SECTION HEADINGS */
+    .section-title {
+      text-align: center;
+      margin: 60px 0 40px;
+    }
+
+    .section-title h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--accent-gold);
+      letter-spacing: 0.05em;
+    }
+
+    .section-title p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--rose-pink);
+    }
+
+    /* 6 PHOTO GALLERY GRID */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 60px;
+    }
+
+    .photo-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      border: 1px solid var(--border-gold);
+      padding: 15px;
+      backdrop-filter: blur(15px);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px var(--gold-glow);
+      border-color: var(--accent-gold);
+    }
+
+    .photo-wrap {
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(0,0,0,0.5);
+      position: relative;
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .photo-card:hover .photo-wrap img {
+      transform: scale(1.05);
+    }
+
+    .photo-meta {
+      padding: 15px 5px 5px;
+      text-align: center;
+    }
+
+    .photo-meta h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    .photo-meta p {
+      font-size: 0.85rem;
+      color: var(--rose-pink);
+      margin-top: 3px;
+    }
+
+    .placeholder-box {
+      display: none;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      padding: 20px;
+      border: 1px dashed var(--border-gold);
+      border-radius: 12px;
+    }
+
+    .photo-wrap img.broken {
+      display: none;
+    }
+
+    .photo-wrap img.broken + .placeholder-box {
+      display: flex;
+    }
+
+    /* LOVE LETTER SECTION */
+    .letter-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-gold);
+      border-radius: 28px;
+      padding: clamp(30px, 6vw, 60px);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .letter-card::before {
+      content: '“';
+      position: absolute;
+      top: 10px;
+      left: 25px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem;
+      color: rgba(212, 175, 55, 0.1);
+      line-height: 1;
+    }
+
+    .letter-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      color: #fdfafb;
+      line-height: 1.9;
+    }
+
+    .letter-body p {
+      margin-bottom: 20px;
+    }
+
+    .letter-signature {
+      text-align: right;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .letter-signature h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      color: var(--accent-gold);
+    }
+
+    .letter-signature p {
+      font-size: 0.9rem;
+      color: var(--rose-pink);
+    }
+
+    /* FEATURES PITCH / FOOTER */
+    .business-footer {
+      border-top: 1px solid var(--border-gold);
+      padding: 50px 20px;
+      text-align: center;
+      background: rgba(10, 5, 8, 0.9);
+      margin-top: 80px;
+    }
+
+    .business-footer h3 {
+      font-family: 'Cinzel', serif;
+      color: var(--accent-gold);
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .business-footer p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 12px 35px;
+      background: linear-gradient(135deg, var(--accent-gold), #b8860b);
+      color: #0a0508;
+      font-weight: 600;
+      border-radius: 30px;
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      box-shadow: 0 5px 20px var(--gold-glow);
+      transition: all 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+    }
+
+    /* Scroll Animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      .timer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="demo-bar">
+    ✨ Website Preview Demo — Customized For Every Couple ✨
+  </div>
+
+  <canvas id="sparkle-canvas"></canvas>
+
+  <div class="container">
+
+    <section class="hero">
+      <div class="hero-badge">Special Anniversary Edition</div>
+      <h1>Celebration of Love</h1>
+      <div class="hero-subtitle">Alex &amp; Taylor</div>
+      <p class="hero-desc">A custom online keepsake dedicated to capturing special memories, milestones, and heartfelt promises together.</p>
+
+      <div class="timer-container fade-in">
+        <div class="timer-title">Time Together So Far</div>
+        <div class="timer-grid">
+          <div class="timer-box">
+            <div class="timer-number" id="days">365</div>
+            <div class="timer-label">Days</div>
+          </div>
+          <div class="timer-box">
+            <div class="timer-number" id="hours">12</div>
+            <div class="timer-label">Hours</div>
+          </div>
+          <div class="timer-box">
+            <div class="timer-number" id="minutes">45</div>
+            <div class="timer-label">Minutes</div>
+          </div>
+          <div class="timer-box">
+            <div class="timer-number" id="seconds">30</div>
+            <div class="timer-label">Seconds</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fade-in">
+      <div class="section-title">
+        <h2>Our Moments</h2>
+        <p>A glimpse into our favorite chapters</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="photo-card">
+          <div class="photo-wrap">
+            <img src="demo1.jpg" alt="Moment 1" onerror="this.classList.add('broken')">
+            <div class="placeholder-box">📸 Photo Slot 1<br>(e.g. First Date)</div>
+          </div>
+          <div class="photo-meta">
+            <h3>Where It All Began</h3>
+            <p>First Date Memories</p>
+          </div>
+        </div>
+
+        <div class="photo-card">
+          <div class="photo-wrap">
+            <img src="demo2.jpg" alt="Moment 2" onerror="this.classList.add('broken')">
+            <div class="placeholder-box">📸 Photo Slot 2<br>(e.g. Favorite Trip)</div>
+          </div>
+          <div class="photo-meta">
+            <h3>Weekend Getaway</h3>
+            <p>Our First Travel Trip</p>
+          </div>
+        </div>
+
+        <div class="photo-card">
+          <div class="photo-wrap">
+            <img src="demo3.jpg" alt="Moment 3" onerror="this.classList.add('broken')">
+            <div class="placeholder-box">📸 Photo Slot 3<br>(e.g. Candid Smile)</div>
+          </div>
+          <div class="photo-meta">
+            <h3>Unfiltered Pure Joy</h3>
+            <p>Random Happy Afternoon</p>
+          </div>
+        </div>
+
+        <div class="photo-card">
+          <div class="photo-wrap">
+            <img src="demo4.jpg" alt="Moment 4" onerror="this.classList.add('broken')">
+            <div class="placeholder-box">📸 Photo Slot 4<br>(e.g. Birthday / Event)</div>
+          </div>
+          <div class="photo-meta">
+            <h3>Celebrations</h3>
+            <p>Making Every Year Special</p>
+          </div>
+        </div>
+
+        <div class="photo-card">
+          <div class="photo-wrap">
+            <img src="demo5.jpg" alt="Moment 5" onerror="this.classList.add('broken')">
+            <div class="placeholder-box">📸 Photo Slot 5<br>(e.g. Sunset Walk)</div>
+          </div>
+          <div class="photo-meta">
+            <h3>Golden Hours</h3>
+            <p>Quiet Evenings Together</p>
+          </div>
+        </div>
+
+        <div class="photo-card">
+          <div class="photo-wrap">
+            <img src="demo6.jpg" alt="Moment 6" onerror="this.classList.add('broken')">
+            <div class="placeholder-box">📸 Photo Slot 6<br>(e.g. Favorite Couple Pic)</div>
+          </div>
+          <div class="photo-meta">
+            <h3>Side By Side</h3>
+            <p>Forever &amp; Always</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fade-in">
+      <div class="section-title">
+        <h2>A Love Note</h2>
+        <p>Words straight from the heart</p>
+      </div>
+
+      <div class="letter-card">
+        <div class="letter-body">
+          <p>Looking back at our journey, every single day spent with you has been a gift. From our late-night conversations to all the small quiet moments, you've shown me what real happiness feels like.</p>
+          <p>Thank you for being my constant support, my favorite companion, and my safe space. I am so proud of everything we've built together, and I cannot wait for every chapter that lies ahead.</p>
+        </div>
+        <div class="letter-signature">
+          <h4>With Endless Love,</h4>
+          <p>Alex &bull; 2026 Anniversary Edition</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="business-footer">
+    <h3>Want a Website Like This for Your Partner?</h3>
+    <p>Surprise your boyfriend, girlfriend, or spouse with a custom online love story website tailored with your personal pictures, special dates, and messages.</p>
+    <a href="#" class="cta-btn">Order Your Custom Website</a>
+  </footer>
+
+  <script>
+    // Smooth reveal animation
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Live Relationship Timer Demo (Counting forward from a sample start date)
+    const startDate = new Date("2025-07-21T00:00:00").getTime();
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const difference = now - startDate;
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // Subtle Gold Sparkle Particle Canvas
+    const canvas = document.getElementById('sparkle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createParticles() {
+      particles = [];
+      const count = Math.floor(window.innerWidth / 30);
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 2 + 0.5,
+          color: Math.random() > 0.3 ? '#d4af37' : '#e0a3b7',
+          alpha: Math.random() * 0.6 + 0.2,
+          speedY: Math.random() * -0.4 - 0.1,
+          speedX: Math.sin(Math.random() * Math.PI) * 0.2
+        });
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.y += p.speedY;
+        p.x += p.speedX;
+        if (p.y < -10) {
+          p.y = canvas.height + 10;
+          p.x = Math.random() * canvas.width;
+        }
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      });
+      requestAnimationFrame(drawParticles);
+    }
+
+    window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
+    resizeCanvas();
+    createParticles();
+    drawParticles();
+  </script>
+</body>
+</html>

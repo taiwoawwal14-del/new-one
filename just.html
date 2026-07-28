@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Khadijat, from Awwal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;1,400&family=Caveat:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --deep-space: #0b091a;
+      --neon-pink: #ff4a85;
+      --bright-violet: #8a2be2;
+      --electric-coral: #ff6b4a;
+      --magic-yellow: #ffd54f;
+      --mint: #3df2be;
+      --cream: #ffffff;
+      --text-muted: #b5b3d6;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background: var(--deep-space);
+      color: var(--cream);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+    
+    h1, h2, h3 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+    }
+
+    #stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      position: relative;
+    }
+    
+    .eyebrow {
+      font-family: 'Outfit', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-size: 0.8rem;
+      color: var(--neon-pink);
+      margin-bottom: 24px;
+      font-weight: 800;
+      text-shadow: 0 0 10px rgba(255, 74, 133, 0.4);
+    }
+    
+    .hero h1 {
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      line-height: 1.1;
+      max-width: 950px;
+      background: linear-gradient(135deg, var(--neon-pink), var(--electric-coral), var(--magic-yellow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 400;
+    }
+    
+    .hero p.sub {
+      margin-top: 30px;
+      max-width: 560px;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    /* THE SAME SKY ARC */
+    .same-sky {
+      margin-top: 60px;
+      width: 100%;
+      max-width: 600px;
+    }
+    
+    .sky-line {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+    
+    .sky-point {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      z-index: 2;
+    }
+    
+    .sky-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--neon-pink);
+      box-shadow: 0 0 15px var(--neon-pink), 0 0 30px var(--neon-pink);
+    }
+    
+    .sky-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--magic-yellow);
+    }
+    
+    .sky-arc {
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 80px);
+      height: 40px;
+    }
+    
+    .sky-caption {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    .sky-caption strong {
+      color: var(--mint);
+    }
+
+    /* SLEEK CAPSULES */
+    .photo-capsule {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 2px solid transparent;
+      background: linear-gradient(135deg, var(--neon-pink), var(--bright-violet)) border-box;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .photo-capsule.color-2 { background: linear-gradient(135deg, var(--electric-coral), var(--magic-yellow)) border-box; }
+    .photo-capsule.color-3 { background: linear-gradient(135deg, var(--mint), var(--bright-violet)) border-box; }
+    .photo-capsule.color-4 { background: linear-gradient(135deg, var(--neon-pink), var(--magic-yellow)) border-box; }
+    .photo-capsule.color-5 { background: linear-gradient(135deg, var(--bright-violet), var(--electric-coral)) border-box; }
+    .photo-capsule.color-6 { background: linear-gradient(135deg, var(--mint), var(--neon-pink)) border-box; }
+
+    .photo-capsule:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(255, 74, 133, 0.25);
+    }
+
+    .photo-capsule .img-container {
+      width: 100%;
+      height: 100%;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-capsule img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-capsule .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 30px 20px 20px 20px;
+      background: linear-gradient(to top, rgba(11, 9, 26, 0.95) 20%, rgba(11, 9, 26, 0.5) 60%, transparent);
+      text-align: center;
+    }
+
+    .photo-capsule .overlay h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+
+    .photo-capsule .overlay p {
+      font-size: 0.85rem;
+      color: var(--mint);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .photo-capsule .placeholder-mark {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-muted);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+    }
+
+    .photo-capsule img.broken { display: none; }
+    .photo-capsule img.broken + .placeholder-mark { display: flex; }
+
+    /* GRID & LETTER */
+    .aesthetic-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .aesthetic-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+    }
+
+    .letter-wrap {
+      background: linear-gradient(135deg, rgba(138, 43, 226, 0.15), rgba(255, 74, 133, 0.05));
+      border: 1px solid rgba(255, 74, 133, 0.2);
+      border-radius: 24px;
+      padding: 48px clamp(20px, 5vw, 48px);
+      position: relative;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    }
+
+    .letter-body p {
+      font-size: 1.12rem;
+      margin-bottom: 24px;
+      color: #e2e1f5;
+    }
+
+    .letter-body p:first-of-type::first-letter {
+      font-family: 'Outfit', sans-serif;
+      font-size: 4rem;
+      font-weight: 800;
+      color: var(--neon-pink);
+      float: left;
+      line-height: 0.85;
+      margin: 8px 12px 0 0;
+      text-shadow: 0 0 15px rgba(255, 74, 133, 0.5);
+    }
+
+    .signoff {
+      margin-top: 30px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      color: var(--magic-yellow);
+      font-size: 1.4rem;
+    }
+
+    /* TAP FOR A REASON GENERATOR */
+    .generator-box {
+      background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(255, 74, 133, 0.1));
+      border: 1px solid rgba(255, 74, 133, 0.3);
+      border-radius: 28px;
+      padding: 40px;
+      text-align: center;
+      margin: 40px auto;
+      max-width: 700px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    .gen-btn {
+      padding: 14px 32px;
+      background: linear-gradient(135deg, var(--neon-pink), var(--bright-violet));
+      border: none;
+      border-radius: 50px;
+      color: #fff;
+      font-weight: 800;
+      font-family: 'Outfit', sans-serif;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 10px 20px rgba(255, 74, 133, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .gen-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 30px rgba(255, 74, 133, 0.5);
+    }
+
+    .gen-output {
+      font-family: 'Caveat', cursive;
+      font-size: 2.2rem;
+      color: var(--magic-yellow);
+      margin-top: 20px;
+      min-height: 70px;
+    }
+
+    /* SEQUENTIAL QUIZ & PASSCODE VAULT */
+    .vault-box {
+      background: linear-gradient(180deg, rgba(19, 15, 48, 0.9), rgba(8, 6, 20, 0.9));
+      border: 2px solid rgba(138, 43, 226, 0.4);
+      border-radius: 28px;
+      padding: 50px 30px;
+      max-width: 650px;
+      margin: 0 auto;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+
+    .step-badge {
+      display: inline-block;
+      padding: 6px 18px;
+      background: rgba(255, 213, 79, 0.15);
+      border: 1px solid var(--magic-yellow);
+      color: var(--magic-yellow);
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .custom-input {
+      width: 260px;
+      height: 52px;
+      background: rgba(11, 9, 26, 0.8);
+      border: 2px solid var(--neon-pink);
+      border-radius: 14px;
+      color: #fff;
+      text-align: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    .custom-input:focus {
+      border-color: var(--mint);
+      box-shadow: 0 0 20px rgba(61, 242, 190, 0.3);
+    }
+
+    .action-btn {
+      height: 52px;
+      padding: 0 28px;
+      background: linear-gradient(135deg, var(--neon-pink), var(--bright-violet));
+      border: none;
+      border-radius: 14px;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .quiz-error {
+      margin-top: 15px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      min-height: 24px;
+    }
+
+    /* SECRET UNLOCKED ALBUM */
+    #secretAlbum {
+      display: none;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+
+    #secretAlbum.unlocked {
+      display: block;
+      opacity: 1;
+    }
+
+    .album-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin-bottom: 80px;
+    }
+
+    .emotional-note {
+      background: linear-gradient(135deg, rgba(255, 74, 133, 0.1), rgba(61, 242, 190, 0.05));
+      border: 1px solid rgba(255, 213, 79, 0.3);
+      border-radius: 28px;
+      padding: 50px 30px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 60px auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .emotional-note p {
+      font-size: 1.2rem;
+      color: #eae9f8;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 50px 24px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 1s cubic-bezier(0.2, 0.7, 0.2, 1), transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="stars"></canvas>
+  
+  <div class="content">
+    
+    <section class="hero">
+      <div class="eyebrow">Happy National Girlfriend Day &nbsp;&middot;&nbsp; August 1st</div>
+      <h1>To Khadijat, <em>my favorite star.</em></h1>
+      <p class="sub">No matter how many miles sit between us, we've never once looked up at a different sky. I built this quiet, glowing corner of the internet just for you.</p>
+      
+      <div class="same-sky">
+        <div class="sky-line">
+          <div class="sky-point">
+            <div class="sky-dot"></div>
+            <div class="sky-name">Awwal</div>
+          </div>
+          <svg class="sky-arc" viewBox="0 0 400 40" preserveAspectRatio="none">
+            <path d="M 10 34 Q 200 -14 390 34" fill="none" stroke="#ff4a85" stroke-width="2.5" stroke-dasharray="6 8" opacity="0.9"/>
+          </svg>
+          <div class="sky-point">
+            <div class="sky-dot"></div>
+            <div class="sky-name">Khadijat</div>
+          </div>
+        </div>
+        <p class="sky-caption">Sharing <strong>1 month and more</strong> of a beautiful story, told from two places.</p>
+      </div>
+    </section>
+
+    <section class="reveal" style="text-align: center; padding-bottom: 50px;">
+      <div class="eyebrow">The beginning of us</div>
+      <h2 style="font-size: clamp(2.2rem, 5vw, 3.2rem); margin-bottom: 24px; background: linear-gradient(135deg, var(--mint), var(--bright-violet)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Where it all starts.</h2>
+      
+      <div class="photo-capsule">
+        <div class="img-container">
+          <img src="image/WhatsApp Image 2026-06-21 at 1.16.25 PM.jpeg" alt="Khadijat 1" onerror="this.classList.add('broken')">
+          <div class="placeholder-mark">✦<br>Photo 1</div>
+        </div>
+        <div class="overlay">
+          <h4>Your smile, mostly</h4>
+          <p>My favorite view</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="aesthetic-grid">
+        <div class="letter-wrap">
+          <div class="letter-body">
+            <p>Khadijat, there's a version of this that would have been easier to just text you. But some things deserve more than a simple chat bubble, so I built you this corner instead.</p>
+            <p>Loving someone from a distance means loving them on purpose, every single day, with nothing but a screen and your voice to go on. I've never met you in person, and somehow you still feel like the most familiar thing in my life. That's rare.</p>
+            <p>I think about the ordinary parts most — the good morning texts, and how you just make me smile when I am chatting with you even when the world feels heavy.</p>
+          </div>
+          <p class="signoff">— Awwal</p>
+        </div>
+
+        <div style="text-align: center;">
+          <div class="photo-capsule color-2" style="margin-bottom: 30px;">
+            <div class="img-container">
+              <img src="image/WhatsApp Image 2026-06-18 at 9.17.25 PM.jpeg" alt="Khadijat 2" onerror="this.classList.add('broken')">
+              <div class="placeholder-mark">✦<br>Photo 2</div>
+            </div>
+            <div class="overlay">
+              <h4>Warms my heart</h4>
+              <p>Thinking of you</p>
+            </div>
+          </div>
+          <h3 style="color: var(--magic-yellow); font-size: 1.8rem; margin-bottom: 10px;">Completely Yours</h3>
+          <p style="color: var(--text-muted);">No matter the distance, this screen holds a beautiful space where we are always close.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="generator-box">
+        <h2 style="font-size: 2.2rem; margin-bottom: 10px;">Why I Love You</h2>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">Tap the button below for a sweet reminder of what makes you so special to me.</p>
+        <button class="gen-btn" onclick="generateReason()">Tap for a Reason ♥</button>
+        <div class="gen-output" id="reasonText">"Click the button above..."</div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="vault-box">
+        
+        <div id="step1">
+          <div class="step-badge">Quiz &bull; Question 1 of 2</div>
+          <h2 style="font-size: 1.8rem; margin-bottom: 10px;">Why is my height short?</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Hint: Is it genetics, posture, or just being unique?</p>
+          <div class="input-row">
+            <input type="text" id="q1Input" class="custom-input" placeholder="Type your answer...">
+            <button class="action-btn" onclick="verifyQ1()">Next Question</button>
+          </div>
+          <div id="q1Err" class="quiz-error"></div>
+        </div>
+
+        <div id="step2" style="display: none;">
+          <div class="step-badge">Quiz &bull; Question 2 of 2</div>
+          <h2 style="font-size: 1.8rem; margin-bottom: 10px;">What do you love to do other than chatting?</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Hint: Enter your favorite hobby or thing to do!</p>
+          <div class="input-row">
+            <input type="text" id="q2Input" class="custom-input" placeholder="Type your answer...">
+            <button class="action-btn" onclick="verifyQ2()">Verify</button>
+          </div>
+          <div id="q2Err" class="quiz-error"></div>
+        </div>
+
+        <div id="step3" style="display: none;">
+          <div class="step-badge" style="border-color: var(--mint); color: var(--mint);">Final Step &bull; Secret Passcode</div>
+          <h2 style="font-size: 1.8rem; margin-bottom: 10px;">Enter Passcode</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Quiz complete! Enter your secret passcode to reveal the album.</p>
+          <div class="input-row">
+            <input type="password" id="passcodeInput" class="custom-input" placeholder="Enter passcode" maxlength="10">
+            <button class="action-btn" onclick="verifyPasscode()">Unlock Vault</button>
+          </div>
+          <div id="passcodeErr" class="quiz-error"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="secretAlbum">
+      <div class="album-header">
+        <div class="eyebrow" style="color: var(--mint);">Unlocked Just For You</div>
+        <h2 style="font-size: clamp(2.5rem, 6vw, 4rem); background: linear-gradient(135deg, var(--neon-pink), var(--electric-coral), var(--magic-yellow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          My Favorite Memories Of You
+        </h2>
+        <p style="color: var(--text-muted); margin-top: 12px; font-size: 1.1rem;">
+          Every picture holds a reason why my heart belongs to you, Khadijat.
+        </p>
+      </div>
+
+      <div class="album-grid">
+        <div class="photo-capsule color-1">
+          <div class="img-container">
+            <img src="image/WhatsApp Image 2026-06-21 at 1.16.25 PM.jpeg" alt="Khadijat 1" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 1</div>
+          </div>
+          <div class="overlay">
+            <h4>Pure Grace</h4>
+            <p>You light up my world</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-2">
+          <div class="img-container">
+            <img src="image/WhatsApp Image 2026-06-18 at 9.17.25 PM.jpeg" alt="Khadijat 2" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 2</div>
+          </div>
+          <div class="overlay">
+            <h4>My Daily Joy</h4>
+            <p>Unmatched beauty</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-3">
+          <div class="img-container">
+            <img src="image/hy.jpeg" alt="Khadijat 3" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 3</div>
+          </div>
+          <div class="overlay">
+            <h4>Soft &amp; Serene</h4>
+            <p>My calm in the storm</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-4">
+          <div class="img-container">
+            <img src="image/WhatsApp Image 2026-06-19 at 9.41.51 PM.jpeg" alt="Khadijat 4" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 4</div>
+          </div>
+          <div class="overlay">
+            <h4>That Precious Smile</h4>
+            <p>I fall for you more each day</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-5">
+          <div class="img-container">
+            <img src="image/WhatsApp Image 2026-06-20 at 12.33.17 PM.jpeg" alt="Khadijat 5" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 5</div>
+          </div>
+          <div class="overlay">
+            <h4>Forever &amp; Always</h4>
+            <p>My heart's choice</p>
+          </div>
+        </div>
+
+        <div class="photo-capsule color-6">
+          <div class="img-container">
+            <img src="./image/WhatsApp Image 2026-06-18 at 10.34.36 PM.jpeg" alt="Khadijat 6" onerror="this.classList.add('broken')">
+            <div class="placeholder-mark">✦<br>Album Photo 6</div>
+          </div>
+          <div class="overlay">
+            <h4>To Our Future</h4>
+            <p>Where distance won't exist</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="emotional-note">
+        <h3 style="font-size: 2rem; color: var(--magic-yellow); margin-bottom: 20px;">Why I Love You, Khadijat</h3>
+        <p>
+          If I could give you one thing in life, I would give you the ability to see yourself through my eyes. Only then would you realize how truly special, beautiful, and irreplaceable you are to me.
+        </p>
+        <p>
+          The distance is only a test to see how far love can travel. You are my favorite thought, my safest place, and the girl I will continue choosing today, tomorrow, and every day after.
+        </p>
+        <p style="font-weight: 800; color: var(--neon-pink); font-size: 1.4rem; margin-top: 30px;">
+          Always yours, Awwal. ♥
+        </p>
+      </div>
+
+      <footer>Made with all my heart for you, my beloved Khadijat</footer>
+    </section>
+
+  </div>
+
+  <script>
+    // Love Reasons List
+    const reasons = [
+      "The genuine way you care about the small details.",
+      "How your messages instantly make my bad days better.",
+      "Your laugh—it's my favorite sound in the world.",
+      "The comfort and peace I feel whenever I talk to you.",
+      "Your beautiful soul and gentle nature.",
+      "How effortlessly you bring out the best version of me."
+    ];
+
+    function generateReason() {
+      const random = reasons[Math.floor(Math.random() * reasons.length)];
+      document.getElementById('reasonText').textContent = `"${random}"`;
+    }
+
+    // SEQUENTIAL QUIZ & PASSCODE LOGIC
+    function verifyQ1() {
+      const input = document.getElementById('q1Input').value.trim();
+      const err = document.getElementById('q1Err');
+
+      if (input.length > 0) {
+        err.style.color = "var(--mint)";
+        err.textContent = "Correct! Moving to Question 2...";
+        setTimeout(() => {
+          document.getElementById('step1').style.display = 'none';
+          document.getElementById('step2').style.display = 'block';
+        }, 600);
+      } else {
+        err.style.color = "var(--electric-coral)";
+        err.textContent = "Please enter an answer to continue!";
+      }
+    }
+
+    function verifyQ2() {
+      const input = document.getElementById('q2Input').value.trim();
+      const err = document.getElementById('q2Err');
+
+      if (input.length > 0) {
+        err.style.color = "var(--mint)";
+        err.textContent = "Awesome! Unlocking final passcode step...";
+        setTimeout(() => {
+          document.getElementById('step2').style.display = 'none';
+          document.getElementById('step3').style.display = 'block';
+        }, 600);
+      } else {
+        err.style.color = "var(--electric-coral)";
+        err.textContent = "Try again! What do you love doing?";
+      }
+    }
+
+    function verifyPasscode() {
+      const code = document.getElementById('passcodeInput').value.trim();
+      const err = document.getElementById('passcodeErr');
+      const album = document.getElementById('secretAlbum');
+
+      if (code === "2009") {
+        err.style.color = "var(--magic-yellow)";
+        err.textContent = "Passcode accepted! Unlocking secret vault...";
+        setTimeout(() => {
+          album.classList.add('unlocked');
+          album.scrollIntoView({ behavior: 'smooth' });
+        }, 600);
+      } else {
+        err.style.color = "var(--electric-coral)";
+        err.textContent = "Incorrect passcode. Try again!";
+      }
+    }
+
+    // Scroll Reveal Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Star Background
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const stars = Array.from({ length: 90 }, () => ({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      r: Math.random() * 1.5,
+      a: Math.random()
+    }));
+
+    function renderStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${s.a})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(renderStars);
+    }
+    renderStars();
+  </script>
+</body>
+</html>
