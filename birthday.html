@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday, Mummy Selimot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#04271f; --emerald:#0b4a3a; --emerald-2:#116450;
+  --gold:#d9b45a; --gold-soft:#f0d9a0; --cream:#fbf6e9; --mist:#b9d6c9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--deep);color:var(--cream);
+  font-family:'Jost',sans-serif;line-height:1.65;overflow-x:hidden;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='%23d9b45a' stroke-opacity='.11'%3E%3Crect x='20' y='20' width='40' height='40'/%3E%3Crect x='20' y='20' width='40' height='40' transform='rotate(45 40 40)'/%3E%3C/g%3E%3C/svg%3E");
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%,rgba(217,180,90,.22),transparent 60%),
+             radial-gradient(ellipse at 50% 100%,rgba(17,100,80,.5),transparent 60%);
+}
+#sparks{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main{position:relative;z-index:1}
+section{max-width:980px;margin:0 auto;padding:100px 22px}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600}
+.ar{font-family:'Amiri',serif;direction:rtl}
+.eyebrow{text-transform:uppercase;letter-spacing:.3em;font-size:.72rem;color:var(--mist);margin-bottom:14px}
+.glow{color:var(--gold-soft);text-shadow:0 0 18px rgba(240,217,160,.6),0 0 48px rgba(217,180,90,.35)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-top:60px}
+.bismillah{font-size:clamp(1.6rem,5vw,2.4rem);color:var(--gold-soft);text-shadow:0 0 22px rgba(240,217,160,.55);margin-bottom:26px}
+.moon{width:74px;height:74px;margin-bottom:22px;filter:drop-shadow(0 0 14px rgba(240,217,160,.8));animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.hero h1{font-size:clamp(2.6rem,9vw,5.6rem);line-height:1.05}
+.hero h1 em{display:block;font-style:italic}
+.fullname{margin-top:18px;font-family:'Cormorant Garamond',serif;font-size:clamp(1.15rem,3.4vw,1.7rem);letter-spacing:.14em;color:var(--cream)}
+.divider{width:120px;height:1px;margin:26px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent);box-shadow:0 0 12px var(--gold)}
+.sub{max-width:480px;color:var(--mist)}
+.twins{margin-top:38px;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+
+/* HEADINGS */
+.head{text-align:center;margin-bottom:56px}
+.head h2{font-size:clamp(1.9rem,4.6vw,2.8rem)}
+
+/* PHOTOS: mihrab-arch frames */
+.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.arch{position:relative;padding:8px;border-radius:999px 999px 14px 14px;border:1px solid var(--gold);
+  background:linear-gradient(180deg,rgba(217,180,90,.18),rgba(17,100,80,.25));
+  box-shadow:0 0 34px -6px rgba(217,180,90,.55),inset 0 0 20px rgba(217,180,90,.15);transition:transform .4s,box-shadow .4s}
+.arch:nth-child(2){margin-top:-26px}
+.arch:hover{transform:translateY(-8px);box-shadow:0 0 54px -4px rgba(240,217,160,.75)}
+.frame{aspect-ratio:3/4.2;border-radius:999px 999px 8px 8px;overflow:hidden;background:var(--emerald);display:flex;align-items:center;justify-content:center}
+.frame img{width:100%;height:100%;object-fit:cover;display:block}
+.frame img.broken{display:none}
+.ph{display:none;text-align:center;color:var(--mist);font-size:.8rem;padding:16px}
+.frame img.broken+.ph{display:block}
+.arch figcaption{text-align:center;padding:12px 0 6px;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-soft);font-size:1.05rem}
+
+/* LETTER */
+.letter{padding:52px clamp(24px,6vw,70px);border:1px solid rgba(217,180,90,.4);border-radius:8px;
+  background:linear-gradient(180deg,rgba(11,74,58,.7),rgba(4,39,31,.85));
+  box-shadow:0 0 70px -22px rgba(217,180,90,.5)}
+.letter p{margin-bottom:20px;font-size:1.06rem}
+.letter p:first-child::first-letter{font-family:'Cormorant Garamond',serif;font-size:3.4rem;color:var(--gold-soft);float:left;line-height:.8;margin:6px 10px 0 0}
+.sign{margin-top:28px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;color:var(--gold-soft)}
+
+/* DUAS */
+.duas{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.dua{padding:30px 26px;border-radius:14px;text-align:center;border:1px solid rgba(217,180,90,.3);
+  background:rgba(4,39,31,.6);box-shadow:0 0 30px -10px rgba(217,180,90,.5)}
+.dua .ar{font-size:1.55rem;line-height:2;color:var(--gold-soft);text-shadow:0 0 16px rgba(240,217,160,.45);margin-bottom:10px}
+.dua h3{font-size:1.2rem;margin-bottom:6px}
+.dua p{font-size:.95rem;color:var(--mist)}
+.dua small{display:block;margin-top:8px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.dua.wide{grid-column:span 2}
+.dua ul{list-style:none;text-align:left;max-width:520px;margin:12px auto 0}
+.dua li{padding:8px 0 8px 26px;position:relative;color:var(--cream);font-size:.98rem}
+.dua li::before{content:'✦';position:absolute;left:0;color:var(--gold);text-shadow:0 0 10px var(--gold)}
+
+/* CLOSING */
+.closing{text-align:center;padding-bottom:150px}
+.closing h2{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:12px}
+.closing .ar{font-size:2rem;color:var(--gold-soft);margin:14px 0 30px;text-shadow:0 0 20px rgba(240,217,160,.6)}
+button{font-family:'Jost',sans-serif;cursor:pointer;background:none;color:var(--gold-soft);border:1px solid var(--gold-soft);
+  font-size:1rem;letter-spacing:.08em;padding:16px 38px;border-radius:999px;box-shadow:0 0 26px -6px rgba(240,217,160,.6);transition:.3s}
+button:hover{background:var(--gold-soft);color:var(--deep);box-shadow:0 0 44px rgba(240,217,160,.8);transform:translateY(-2px)}
+button:focus-visible{outline:2px solid var(--gold-soft);outline-offset:3px}
+.madeby{margin-top:70px;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic}
+.madeby small{display:block;margin-top:6px;font-family:'Jost',sans-serif;font-style:normal;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mist)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(30px) scale(.985);filter:blur(6px);transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1),filter .9s}
+.rv.in{opacity:1;transform:none;filter:none}
+.rv.in>*:nth-child(2){transition-delay:.12s}.rv.in>*:nth-child(3){transition-delay:.24s}
+
+@media(max-width:720px){
+  section{padding:80px 18px}
+  .photos{grid-template-columns:1fr;max-width:300px;margin:0 auto;gap:34px}
+  .arch:nth-child(2){margin-top:0}
+  .duas{grid-template-columns:1fr}.dua.wide{grid-column:auto}
+  }
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none;filter:none}}
+</style>
+</head>
+<body>
+<canvas id="sparks"></canvas>
+<main>
+
+<section class="hero">
+  <div class="bismillah ar">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+  <svg class="moon" viewBox="0 0 100 100"><path d="M62 10a40 40 0 1 0 28 66A34 34 0 0 1 62 10z" fill="#f0d9a0"/><polygon points="78,26 81,35 90,35 83,41 86,50 78,44 70,50 73,41 66,35 75,35" fill="#f0d9a0"/></svg>
+  <div class="eyebrow">4th November</div>
+  <h1>Happy Birthday,<em class="glow">Mummy</em></h1>
+  <div class="fullname">Selimot Olufunke Adeyemi</div>
+  <div class="divider"></div>
+  <p class="sub">Barakallahu laki fi umrik. A little gift from your children, with all our love and duas.</p>
+  <div class="twins">Made by the twins</div>
+</section>
+
+<section>
+  <div class="head rv"><div class="eyebrow">Our favourite memories</div><h2>The woman who raised us</h2></div>
+  <div class="photos rv">
+    <!-- ADD YOUR PHOTOS: put mum1.jpg, mum2.jpg, mum3.jpg in the same folder as this file (or change the names below). Edit captions too. -->
+    <figure class="arch"><div class="frame"><img src="image/WhatsApp Image 2026-11-04 at 12.04.35 AM (1).jpeg" alt="Mummy, photo 1" onerror="this.classList.add('broken')"><div class="ph">✦<br>Add mum1.jpg</div></div><figcaption>Our queen</figcaption></figure>
+    <figure class="arch"><div class="frame"><img src="image/WhatsApp Image 2026-11-04 at 12.04.36 AM (1).jpeg" alt="Mummy, photo 2" onerror="this.classList.add('broken')"><div class="ph">✦<br>Add mum2.jpg</div></div><figcaption>Our first love</figcaption></figure>
+    <figure class="arch"><div class="frame"><img src="image/WhatsApp Image 2026-11-04 at 12.04.37 AM (1).jpeg" alt="Mummy, photo 3" onerror="this.classList.add('broken')"><div class="ph">✦<br>Add mum3.jpg</div></div><figcaption>Our greatest blessing</figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <div class="head rv"><div class="eyebrow">From your twins</div><h2>A letter to our Mummy</h2></div>
+  <div class="letter rv">
+    <p>Dear Mummy, Alhamdulillah, Allah has let us see another beautiful birthday of yours. Today we want to say what we don't say often enough: thank you.</p>
+    <p>You carried two of us, and still found strength for everything else. You stayed up through our sleepless nights, prayed for us when we didn't know we needed it, and loved us equally and without keeping count. Whatever we have become, your sacrifices and your duas are behind it.</p>
+    <p>Being your twins means we were your double trouble and your double joy at the same time. We know we were a handful, but we hope we have been a source of pride too, in sha Allah.</p>
+    <p>On your special day, we ask Allah to repay you for everything you have given us, and to give you far more than you have ever wished for. We love you more than words can say.</p>
+    <p class="ar" style="text-align:center;font-size:1.5rem;color:var(--gold-soft)">جَزَاكِ اللَّهُ خَيْرًا يَا أُمِّي</p>
+    <div class="sign">With all our love, your twins ♡</div>
+  </div>
+</section>
+
+<section>
+  <div class="head rv"><div class="eyebrow">Our prayers for you</div><h2>Duas for Mummy</h2></div>
+  <div class="duas rv">
+    <div class="dua wide">
+      <div class="ar">بَارَكَ اللَّهُ لَكِ فِي عُمُرِكِ</div>
+      <h3>Barakallahu laki fi umrik</h3>
+      <p>May Allah bless your life and make every year ahead better than the one before.</p>
+    </div>
+    <div class="dua">
+      <div class="ar">رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ الَّتِي أَنْعَمْتَ عَلَيَّ وَعَلَىٰ وَالِدَيَّ</div>
+      <p>"My Lord, inspire me to be grateful for Your favour which You have bestowed upon me and upon my parents."</p>
+      <small>Surah Al-Ahqaf 46:15</small>
+    </div>
+    <div class="dua">
+      <div class="ar">رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا</div>
+      <p>"My Lord, have mercy upon them as they brought me up when I was small."</p>
+      <small>Surah Al-Isra 17:24</small>
+    </div>
+    <div class="dua wide">
+      <h3>What we ask Allah for you</h3>
+      <ul>
+        <li>O Allah, grant Mummy good health, strength and long life upon Your obedience.</li>
+        <li>O Allah, fill her home with peace, her heart with contentment, and her rizq with barakah.</li>
+        <li>O Allah, ease her every difficulty, and turn her worries into joy.</li>
+        <li>O Allah, forgive her sins, accept her good deeds, and grant her Jannatul Firdaus.</li>
+        <li>O Allah, keep us your children righteous, so that we are a sadaqah jariyah for her.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="rv">
+    <h2 class="glow">Happy Birthday, Mummy</h2>
+    <div class="ar">آمِين يَا رَبَّ الْعَالَمِينَ</div>
+    <button id="ameen">Ameen ♡</button>
+    <div class="madeby">Made with love by the twins<small>Your children, always</small></div>
+  </div>
+</section>
+
+</main>
+<script>
+/* Scroll reveal */
+const els = document.querySelectorAll('.rv');
+if('IntersectionObserver' in window){
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.15, rootMargin:'0px 0px -8% 0px'});
+  els.forEach(el => io.observe(el));
+} else els.forEach(el => el.classList.add('in'));
+
+/* Glowing gold sparks background */
+const cv = document.getElementById('sparks'), cx = cv.getContext('2d');
+const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let sp = [];
+function size(){ cv.width = innerWidth; cv.height = innerHeight; sp = Array.from({length: Math.floor(innerWidth*innerHeight/14000)}, () => ({x:Math.random()*cv.width, y:Math.random()*cv.height, r:Math.random()*1.6+.4, v:Math.random()*.25+.05, p:Math.random()*6.28})); }
+function draw(t){
+  cx.clearRect(0,0,cv.width,cv.height);
+  for(const s of sp){
+    s.y -= calm ? 0 : s.v; if(s.y < -5) s.y = cv.height + 5;
+    cx.globalAlpha = .25 + .6*(.5+.5*Math.sin(t/900 + s.p));
+    cx.fillStyle = '#f0d9a0'; cx.shadowColor = 'rgba(240,217,160,.9)'; cx.shadowBlur = 10;
+    cx.beginPath(); cx.arc(s.x, s.y, s.r, 0, 6.28); cx.fill();
+  }
+  cx.globalAlpha = 1; cx.shadowBlur = 0;
+  if(!calm) requestAnimationFrame(draw);
+}
+addEventListener('resize', size); size(); requestAnimationFrame(draw);
+
+/* Ameen button: golden burst */
+document.getElementById('ameen').addEventListener('click', () => {
+  if(calm) return;
+  const cols = ['#f0d9a0','#d9b45a','#fbf6e9','#b9d6c9'];
+  for(let i=0;i<30;i++){
+    const d = document.createElement('div'), z = Math.random()*8+4;
+    Object.assign(d.style,{position:'fixed',left:'50%',bottom:'22%',width:z+'px',height:z+'px',background:cols[i%4],borderRadius:'50%',boxShadow:'0 0 10px '+cols[i%4],zIndex:99,pointerEvents:'none'});
+    document.body.appendChild(d);
+    const a = (Math.random()*160-80)*Math.PI/180, v = Math.random()*240+120;
+    d.animate([{transform:'translate(0,0)',opacity:1},{transform:`translate(${Math.sin(a)*v}px,${-Math.cos(a)*v+200}px)`,opacity:0}],{duration:1500+Math.random()*600,easing:'cubic-bezier(.2,.7,.4,1)'}).onfinish = () => d.remove();
+  }
+});
+</script>
+</body>
+</html>
